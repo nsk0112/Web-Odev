@@ -6,39 +6,27 @@
 }
 
 
-@*<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
-
-<form asp-page-handler="WikiRequest" method="post">
-    <label>İsim : </label>
-    <input asp-for="Term" type="search"/>
-    <button class="btn btn-primary">Ara</button>
-
-</form>
-
-@if (!string.IsNullOrEmpty(Model.Data))
-{
-    <div>
-        @Model.Data
-    </div>
-}*@
-
-<div class="container text-center">
+@*<div class="container text-center">
     <div class="jumbotron">
         <h1>World Cities Comparison</h1>
         <p>Compare and learn about different cities around the world.</p>
     </div>
-</div>
+</div>*@
 
 
-<form asp-page-handler="CityRequest" method="post" class="w-100">
+@*<form asp-page-handler="CityRequest" method="post" class="w-100">
     <label>City: </label>
     <input asp-for="City" type="search" class="w-75" />
     <button class="btn btn-primary w-auto">Get</button>
-</form>
+</form>*@
+
+<div class="container text-center">
+    <div class="jumbotron">
+        <h1 class="display-1">World Cities Comparison</h1>
+        <p>Compare and learn about cities around the world.</p>
+    </div>
+</div>
 
 <form asp-page-handler="CityRequest" method="post" class="w-100">
     <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
@@ -71,7 +59,7 @@
 
 
 
-@if (!string.IsNullOrEmpty(Model.DataWrite))
+@*@if (!string.IsNullOrEmpty(Model.DataWrite))
 {
     <div>
         @Model.DataWrite
@@ -88,7 +76,40 @@
             </div>
         }
     </div>
+}*@
+
+
+
+
+
+@if (!string.IsNullOrEmpty(Model.DataWrite))
+{
+    <div class="card">
+        <img src="@Model.ImgLink"/>
+    </div>
+
+    <div class="container">
+        <h1 class="display-1" style="margin-bottom:10px; margin-top:10px">@Model.City.ToUpper()</h1>
+        <blockquote class="blockquote">
+            <p>@Model.DataWrite</p>
+        </blockquote>
+    </div>
+
+    <div class="row row-cols-4" style="margin-top:15px">
+        @foreach (var item in Model.Scores)
+        {
+            <div class="card" style="margin-top:10px">
+                <div class="card-header">@item.name</div>
+                <div class="card-body">@item.score_out_of_10.ToString()</div>
+            </div>
+        }
+    </div>
 }
+
+
+
+
+
 
 
 
