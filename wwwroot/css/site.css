@@ -1,0 +1,26 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+body {
+    /* Created with https://www.css-gradient.com */
+    background: #23EC55;
+    background: -webkit-radial-gradient(top right, #23EC55, #2D51C1);
+    background: -moz-radial-gradient(top right, #23EC55, #2D51C1);
+    background: radial-gradient(to bottom left, #23EC55, #2D51C1);
+}

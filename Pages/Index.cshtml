@@ -1,0 +1,109 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    string path;
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<form asp-page-handler="WikiRequest" method="post">
+    <label>İsim : </label>
+    <input asp-for="Term" type="search"/>
+    <button class="btn btn-primary">Ara</button>
+
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Data))
+{
+    <div>
+        @Model.Data
+    </div>
+}*@
+
+<div class="container text-center">
+    <div class="jumbotron">
+        <h1>World Cities Comparison</h1>
+        <p>Compare and learn about different cities around the world.</p>
+    </div>
+</div>
+
+
+<form asp-page-handler="CityRequest" method="post" class="w-100">
+    <label>City: </label>
+    <input asp-for="City" type="search" class="w-75" />
+    <button class="btn btn-primary w-auto">Get</button>
+</form>
+
+<div class="card">
+    <div class="card-header">San Fransisco</div>
+</div>
+
+@*
+<form asp-page-handler="CityRequest" method="post" class="w-100">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control">
+        <div class="input-group-append">
+            <button class="btn btn-primary align-items-center justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</form>*@
+
+
+
+@if (!string.IsNullOrEmpty(Model.DataWrite))
+{
+    <div>
+        @Model.DataWrite
+    </div>
+
+    <div class="row row-cols-4">
+        @foreach (var item in Model.Scores)
+        {
+            <div class="card">
+                <div class="card-header">@item.name</div>
+                <div class="card-body">@item.score_out_of_10.ToString()</div>
+            </div>
+        }
+    </div>
+}
+
+
+
+
+
+
+@*
+<form asp-page-handler="PokemonRequest" method="post">
+    <label>Pokemon ID : </label>
+    <input asp-for="PokemonName" type="search"/>
+    <button class="btn btn-primary">Ara</button>
+
+</form>
+
+@if (!string.IsNullOrEmpty(Model.photoPath))
+{
+    <div class="card">
+        <img class="card-img" src="@Model.photoPath" />
+    </div>
+}
+
+
+
+<div class="row row-cols-6">
+    @for (int i = 1; i < 151; i++)
+    {
+        path = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + @i + ".png";
+        <div class="card">
+            <img class="card-img" src="@path"/>
+        </div>
+    }
+</div>*@
