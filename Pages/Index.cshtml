@@ -39,9 +39,16 @@
     <button class="btn btn-primary w-auto">Get</button>
 </form>
 
-<div class="card">
-    <div class="card-header">San Fransisco</div>
-</div>
+<form asp-page-handler="CityRequest" method="post" class="w-100">
+    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+        <div class="input-group">
+            <input type="search" asp-for="City" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+            <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+</form>
+
 
 @*
 <form asp-page-handler="CityRequest" method="post" class="w-100">
@@ -65,12 +72,13 @@
         @Model.DataWrite
     </div>
 
+    <div><img src="@Model.ImgLink" /></div>
+
     <div class="row row-cols-4">
         @foreach (var item in Model.Scores)
         {
             <div class="card">
                 <div class="card-header">@item.name</div>
-                <div class="card-img"><img src="@Model.ImgLink"/></div>
                 <div class="card-body">@item.score_out_of_10.ToString()</div>
             </div>
         }
