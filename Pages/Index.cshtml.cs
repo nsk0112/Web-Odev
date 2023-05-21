@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AngleSharp.Html.Parser;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
+using System.Text.RegularExpressions;
 using yeto.Models;
 using yeto.Services;
 
@@ -45,6 +48,10 @@ namespace yeto.Pages
 
 
         CityModel citydata { get; set; }
+        ImageModel imagedata { get; set; }
+
+        [BindProperty]
+        public string ImgLink { get; set; }
 
         [BindProperty]
         public string City { get; set; }
@@ -56,9 +63,15 @@ namespace yeto.Pages
         public void OnPostCityRequest(JsonWikiService jsonWikiService)
         {
             Console.WriteLine($"City: {City}");
+
             citydata = jsonWikiService.GetCityModel(City);
-            DataWrite = citydata.summary;
+            var doc = new HtmlParser();
+            var val = Regex.Replace(citydata.summary, @"<[^>]*>", String.Empty);
+            DataWrite = val;
             Scores = citydata.categories;
+
+            imagedata = jsonWikiService.GetImageModel(City);
+            ImgLink = imagedata.photos[0].image.web;
         }
 
 

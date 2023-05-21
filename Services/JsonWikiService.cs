@@ -29,6 +29,18 @@ namespace yeto.Services
         }
 
 
+        public ImageModel GetImageModel(string city)
+        {
+            string formatCity = city.ToLower().Replace(",", "-");
+            formatCity = formatCity.Replace(" ", "-");
+            string url = "https://api.teleport.org/api/urban_areas/slug:" + formatCity + "/images/";
+            var json = new WebClient().DownloadString(url);
+            ImageModel imgUrl = JsonSerializer.Deserialize<ImageModel>(json);
+
+            return imgUrl;
+        }
+
+
         public WikiModel GetAgeModel(string term)
         {
             string url = string.Concat("https://api.agify.io/?name=", term);
